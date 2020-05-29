@@ -22,17 +22,16 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of the matrix
-  j <- x$getInverse()
-  if(!is.null(j)){
-    return(j)
+  h <- x$getInverse()        ## use getInverse Feature
+  if(!is.null(h)){          ## check if calculating inverse is possible 
+    return(h)           ## if not: print initial matrix
   }
-  mat <- x$get()
-  j <- solve(mat,...)
-  x$setInverse(j)
-  j
+  mat <- x$get()     
+  h <- solve(mat,...)    ## solve for inverse
+  x$setInverse(h)
+  h
 }
 
 ### test with small example
 mat <- matrix(c(2, 4, 3, 1), nrow = 2, ncol = 2)
-z<- makeCacheMatrix(mat) 
 cacheSolve(makeCacheMatrix(mat))  ## viola ;)
